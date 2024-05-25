@@ -1,8 +1,5 @@
 package com.java8;
 
-import org.apache.hadoop.io.Text;
-import scala.runtime.SymbolLiteral;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
