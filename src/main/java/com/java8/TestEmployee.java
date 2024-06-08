@@ -70,6 +70,9 @@ public class TestEmployee {
 
         System.out.println(emp.getName());
 
+
+
+
         System.out.println("--------------------");
 
         /**
@@ -114,7 +117,7 @@ public class TestEmployee {
 
         Optional<Employee> youngestMaleEmployee = employeeList.stream()
                 .filter(ep -> "Male".equals(ep.getGender()) && "Product Development".equals(ep.getDepartment()))
-                .collect(Collectors.minBy(Comparator.comparingInt(Employee::getAge)));
+                .min(Comparator.comparingInt(Employee::getAge));
 
        Employee young =  youngestMaleEmployee.get();
 
@@ -178,6 +181,29 @@ public class TestEmployee {
         System.out.println("Total Salary "+collect3.getSum());
         System.out.println("Ava Salary "+ collect3.getAverage());
         System.out.println("Count of total "+ collect3.getCount());
+
+
+        /*
+        Sort Employee by salary in decreasing order
+         */
+
+        employeeList.stream()
+                .sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+
+
+        /*
+        Find the second highest salary using
+         */
+        System.out.println("-----------------------------------");
+        Optional<Employee> first1 = employeeList.stream()
+                .sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
+                .limit(2)
+                .skip(1)
+                .findFirst();
+
+        System.out.println(first1.get().getName());
 
 
     }
