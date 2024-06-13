@@ -29,6 +29,7 @@ public class JavaEight {
       }
 
         exceptionTest();
+        seprateOddAndEven();
     }
 
     private static void seprateOddAndEven(){
@@ -37,6 +38,20 @@ public class JavaEight {
 
         Map<Boolean, List<Integer>> collect = oddEven.stream()
                 .collect(Collectors.partitioningBy(i -> i % 2 == 0));
+
+
+        for(Map.Entry<Boolean, List<Integer>> oe : collect.entrySet()){
+
+            if(oe.getKey()){
+
+                System.out.println(oe.getValue());
+            }
+            else{
+
+                System.out.println(oe.getValue());
+            }
+
+        }
 
     }
 

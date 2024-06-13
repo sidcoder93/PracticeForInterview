@@ -22,6 +22,12 @@ public class SortStudent {
 
         list.stream().map(Student::getName).forEach(System.out::println);
 
+        System.out.println("After sorting");
+
+        list.stream().sorted(Comparator.comparingInt(Student::getAge).reversed())
+                        .map(Student::getName)
+                                .forEach(System.out::println);
+
        Collections.sort(list, new Comparator<Student>() {
                    @Override
                    public int compare(Student o1, Student o2) {

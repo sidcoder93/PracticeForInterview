@@ -16,7 +16,7 @@ public class MergeMaps {
          */
 
 
-        System.out.println("------------  Using Merge -------------------");
+
         Map<String, Integer> map1 = new HashMap<>();
         map1.put("sid", 1);
         map1.put("vaidya", 2);
@@ -32,7 +32,16 @@ public class MergeMaps {
         map2.put("sachin", 10);
 
 
+
+
         Map<String, Integer> map3 = new HashMap<>(map1);
+
+        System.out.println("------------Before Merge------------------");
+        System.out.println(map1);
+        System.out.println(map2);
+        System.out.println(map3);
+
+        System.out.println("------------  Using Merge -------------------");
 
         map2.forEach((k, v) -> map3.merge(k,v, (oldValue, newValue) -> oldValue));
 
