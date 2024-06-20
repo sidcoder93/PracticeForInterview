@@ -10,6 +10,7 @@ public class ArraySort {
         int[] array = {1,2,0,0,3};
 
         //System.out.println("Intial Array "+ array);
+        startWithZero();
 
 
         int index=0;
@@ -34,4 +35,34 @@ public class ArraySort {
 
 
     }
+
+    public static void startWithZero(){
+
+
+        int[] arr = {1,1,0,0,0,1,1,1,0,1,0};
+
+        int index=arr.length-1;
+
+        for(int i=arr.length-1; i>=0; i--){
+
+
+            if(arr[i]!=0){
+
+                arr[index]=arr[i];
+                index--;
+            }
+
+        }
+
+        for(int i= index; i>=0; i--){
+
+            arr[i]= 0;
+        }
+
+
+        System.out.println(Arrays.toString(arr));
+    }
+
+
+
 }
