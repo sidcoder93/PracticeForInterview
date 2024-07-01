@@ -182,7 +182,7 @@ public class TestEmployee {
         System.out.println("Ava Salary "+ collect3.getAverage());
         System.out.println("Count of total "+ collect3.getCount());
 
-
+        System.out.println("-----------------------------------");
         /*
         Sort Employee by salary in decreasing order
          */
@@ -204,6 +204,48 @@ public class TestEmployee {
                 .findFirst();
 
         System.out.println(first1.get().getName());
+
+
+        System.out.println("-----------------------------");
+
+        /*
+        Find the Employee with the lowest salary in each department
+         */
+
+        Map<String, Optional<Employee>> collect4 = employeeList.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.minBy(Comparator.comparingDouble(Employee::getSalary))));
+
+
+
+        for(Map.Entry<String, Optional<Employee>> empMamp: collect4.entrySet()) {
+
+            System.out.println("Department :"+ empMamp.getKey() + "- Name is: "+ empMamp.getValue().get().getName());
+        }
+
+        System.out.println("-----------------------------------");
+
+        /*
+        Remove name which starts with A
+         */
+
+        /*employeeList.stream()
+                .map(Employee::getName)
+                .filter(name -> !name.startsWith("A"))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);*/
+
+        System.out.println("-------------------");
+
+        TreeSet<Employee> treeSet = new TreeSet<>((o1, o2) -> (int) (o2.getSalary()-o1.getSalary()));
+
+        treeSet.addAll(employeeList);
+
+        for (Employee sortedEmp : treeSet){
+            System.out.println(sortedEmp);
+        }
+
+
+
 
 
     }
