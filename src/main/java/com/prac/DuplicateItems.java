@@ -39,7 +39,7 @@ public class DuplicateItems {
 
         System.out.println(String.valueOf(sArrsay));
 
-        int n = 13;
+        int n = 2;
 
         boolean b = IntStream.rangeClosed(2, n / 2)
                 .noneMatch(x -> n % x == 0);
