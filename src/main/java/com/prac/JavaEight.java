@@ -20,10 +20,7 @@ public class JavaEight {
       map.forEach((k,v) -> System.out.println(k + "-" +v));
 
 
-
-
-
-      for(Map.Entry<Character, Long> vowel: map.entrySet()){
+        for(Map.Entry<Character, Long> vowel: map.entrySet()){
 
           System.out.println(vowel.getKey() + "-" + vowel.getValue());
       }

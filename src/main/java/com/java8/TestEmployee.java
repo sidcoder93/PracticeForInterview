@@ -73,7 +73,7 @@ public class TestEmployee {
 
 
 
-        System.out.println("--------------------");
+        System.out.println("----------Names of employees joined after 2015----------");
 
         /**
          * Names of employees joined after 2015
@@ -86,7 +86,7 @@ public class TestEmployee {
 
 
 
-        System.out.println("--------------------");
+        System.out.println("----------Number of employees in each department----------");
 
         /**
          * Number of employees in each department
@@ -96,7 +96,8 @@ public class TestEmployee {
                 .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
         countMap.forEach((k,v) -> System.out.println("No of Employees in Department "+k+ " are "+ v));
 
-        System.out.println("--------------------");
+
+        System.out.println("---------Avarage salary of each department-----------");
 
         /**
          * Avarage salary of each department
@@ -109,7 +110,7 @@ public class TestEmployee {
         avaSalaryDepartment.forEach((k,v) -> System.out.println("Avarage Salary of Department "+k+ " is "+ v));
 
 
-        System.out.println("--------------------");
+        System.out.println("----------Details of youngest Male employee in product development Department----------");
 
         /**
          * Details of youngest Male employee in product development Department
@@ -123,7 +124,8 @@ public class TestEmployee {
 
         System.out.println(young.getName());
 
-        System.out.println("--------------------");
+
+        System.out.println("---------Who has the most working exp-----------");
 
         /**
          *Who has the most working exp
@@ -135,6 +137,7 @@ public class TestEmployee {
         Employee mostExp = first.get();
 
         System.out.println(mostExp.getName());
+
 
 
         System.out.println("--------------------");
@@ -196,14 +199,14 @@ public class TestEmployee {
         /*
         Find the second highest salary using
          */
-        System.out.println("-----------------------------------");
-        Optional<Employee> first1 = employeeList.stream()
+        System.out.println("\n---------------Find the second highest salary--------------------");
+        Optional<String> first1 = employeeList.stream()
                 .sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
-                .limit(2)
+                .map(Employee::getName)
                 .skip(1)
                 .findFirst();
 
-        System.out.println(first1.get().getName());
+        first1.ifPresent(System.out::println);
 
 
         System.out.println("-----------------------------");
@@ -245,7 +248,20 @@ public class TestEmployee {
         }
 
 
+        System.out.println("\n------------  Find details of Employee with 3rd Highest salary ------------");
 
+        Double thirdHighestSalary = employeeList.stream()
+                .map(Employee::getSalary)
+                .sorted((a, b) -> Double.compare(b, a))
+                .skip(2)
+                .findFirst()
+                .get();
+
+        List<Employee> collect5 = employeeList.stream()
+                .filter(employee -> thirdHighestSalary.equals(employee.getSalary()))
+                .collect(Collectors.toList());
+
+        System.out.println(collect5);
 
 
     }
