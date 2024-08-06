@@ -12,6 +12,8 @@ public class JavaEight {
 
         String st = "Siddharth Vaidya";
 
+
+
       Map<Character, Long> map =   st.chars()
                 .mapToObj(c -> (char)c)
                 .filter(c -> "aeiou".indexOf(c) != -1)

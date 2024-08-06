@@ -5,7 +5,7 @@ public class TestSingleton {
     private static volatile  TestSingleton instance = null;
     private TestSingleton(){}
 
-    private static TestSingleton getSingleton(){
+    public static TestSingleton getSingleton(){
 
         if(null==instance){
             synchronized (TestSingleton.class) {

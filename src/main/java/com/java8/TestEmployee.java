@@ -29,12 +29,13 @@ public class TestEmployee {
         employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
 
+
         //Number of male and female employees
         Map<String, Long> collect = employeeList.stream()
                 .collect(Collectors.groupingBy(Employee::getGender, Collectors.counting()));
         System.out.println(collect);
 
-        /**
+        /*
          *   Print name of all departments:
          */
          employeeList.stream()
@@ -45,7 +46,7 @@ public class TestEmployee {
 
         System.out.println("--------------------");
 
-        /**
+        /*
          * Avarage Age of Male and Female Employees
          */
 
@@ -58,7 +59,7 @@ public class TestEmployee {
 
         System.out.println("--------------------");
 
-        /**
+        /*
          * Details of Highest Paid Employee
          */
 
@@ -75,7 +76,7 @@ public class TestEmployee {
 
         System.out.println("----------Names of employees joined after 2015----------");
 
-        /**
+        /*
          * Names of employees joined after 2015
          */
 
@@ -88,7 +89,7 @@ public class TestEmployee {
 
         System.out.println("----------Number of employees in each department----------");
 
-        /**
+        /*
          * Number of employees in each department
          */
 
@@ -99,7 +100,7 @@ public class TestEmployee {
 
         System.out.println("---------Avarage salary of each department-----------");
 
-        /**
+        /*
          * Avarage salary of each department
          */
 
@@ -112,7 +113,7 @@ public class TestEmployee {
 
         System.out.println("----------Details of youngest Male employee in product development Department----------");
 
-        /**
+        /*
          * Details of youngest Male employee in product development Department
          */
 
@@ -120,14 +121,16 @@ public class TestEmployee {
                 .filter(ep -> "Male".equals(ep.getGender()) && "Product Development".equals(ep.getDepartment()))
                 .min(Comparator.comparingInt(Employee::getAge));
 
-       Employee young =  youngestMaleEmployee.get();
+        youngestMaleEmployee.ifPresent(System.out::println);
 
-        System.out.println(young.getName());
+       //Employee young =  youngestMaleEmployee.get();
+
+        //System.out.println(young.getName());
 
 
         System.out.println("---------Who has the most working exp-----------");
 
-        /**
+        /*
          *Who has the most working exp
          */
 
@@ -142,7 +145,7 @@ public class TestEmployee {
 
         System.out.println("--------------------");
 
-        /**
+        /*
          *  Separate the employees who are younger or equal to 25 years from those employees who are older than 25 years.
          */
 
@@ -174,7 +177,7 @@ public class TestEmployee {
 
         System.out.println("--------------------");
 
-        /**
+        /*
          *  What is the average salary and total salary of the whole organization?
          */
 
@@ -262,6 +265,23 @@ public class TestEmployee {
                 .collect(Collectors.toList());
 
         System.out.println(collect5);
+
+        //
+
+
+        System.out.println("--------------Employees with Same age--------------------");
+
+        Map<Integer, List<Employee>> collect6 = employeeList.stream()
+                .collect(Collectors.groupingBy(Employee::getAge));
+
+
+        Map<Integer, List<String>> collect7 = collect6.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().size() > 1)
+                .collect(Collectors.toMap(Map.Entry::getKey,
+                        entry -> entry.getValue().stream().map(Employee::getName).collect(Collectors.toList())));
+
+        collect7.forEach((k,v) -> System.out.println(k + "-" + v));
 
 
     }
